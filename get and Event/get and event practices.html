@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            display: block
+        }
+
+        body {
+            line-height: 1
+        }
+
+        ol, ul {
+            list-style: none
+        }
+
+        blockquote, q {
+            quotes: none
+        }
+
+        blockquote:before, blockquote:after, q:before, q:after {
+            content: '';
+            content: none
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        ul{
+            width:1000px;
+            height:100px;
+            margin:50px auto;
+        }
+        ul li{
+            float:left;
+            width:70px;
+            height:70px;
+            margin-left:20px;
+            border:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box" class="box">
+    <ul>
+        <li id="first">请点击我</li>
+        <li id="second">请双击我</li>
+        <li id="third">请把鼠标移入这里</li>
+        <li id="fourth">请把鼠标移出这里</li>
+        <li id="fifth">请随意按一个键</li>
+        <li id="sixth"></li>
+        <li id="seventh"></li>
+        <li id="eighth"></li>
+        <li id="ninth"></li>
+        <li id="tenth"></li>
+    </ul>
+    <input type="text" id="text">
+</div>
+
+
+<script>
+    var of=document.getElementById("first"),
+        os=document.getElementById("second"),
+        ot=document.getElementById("third"),
+        o4=document.getElementById("fourth"),
+        o5=document.getElementById("fifth"),
+        otext=document.getElementById("text");
+    of.onclick=function () {
+        alert("我被点击了");
+    };
+    os.ondblclick=function () {
+        alert("我被双击了");
+    };
+    ot.onmouseenter=function () {
+        alert("我被鼠标移入了");
+    };
+    o4.onmouseleave=function () {
+        alert("我的鼠标移出了");
+    };
+    /*document.onkeydown=function () {
+        alert("asd");
+    };*/
+    document.onkeydown=function () {
+        alert("键盘的某个键按下了");
+    };
+    otext.onkeydown=function () {
+        alert("按键");
+    };
+
+</script>
+</body>
+</html>
