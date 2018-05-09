@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline
+        }
+        #wrap{
+            width: 800px;
+            height:500px;
+            margin:50px auto;
+            border: 1px solid #000;
+        }
+        #header{
+            height:30px;
+        }
+        span{
+            display: inline-block;
+            width: 100px;
+            margin-right: 15px;
+            color: #fff;
+            text-align:center;
+            line-height: 30px;
+            background-color:#000;
+            cursor:pointer;
+        }
+        .active{
+            background-color: brown;
+        }
+        .show-img{
+            position: relative;
+            height:470px;
+        }
+        .show-img p{
+            position: absolute;
+            color:#fff;
+            text-align: center;
+        }
+        .last,.next{
+            top:200px;
+            width:50px;
+            height:50px;
+            line-height:45px;
+            font-size: 40px;
+            background-color:#000;
+            cursor: pointer;
+        }
+        .next{
+            right:0;
+        }
+        .top,.bottom{
+            width:100%;
+            height:30px;
+            line-height:30px;
+            background-color: rgba(0,0,0,.3);
+        }
+        .bottom{
+            bottom:0;
+        }
+        img{
+            width: 100%;
+            height:470px;
+        }
+        .in{
+            display: none;
+        }
+        .out{
+            diplay:block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+    <div id="header">
+        <span id="loop">循环切换</span>
+        <span id="single">单边切换</span>
+    </div>
+    <div id="show" class="show-img">
+        <p class="top" id="top">1/7</p>
+        <p class="bottom" id="bottom">这是第一张图片</p>
+        <p class="last" id="last"><</p>
+        <p class="next" id="next">></p>
+        <img src="images/01.jpeg" alt="">
+        <img src="images/02.jpeg" alt="" class="in">
+        <img src="images/03.jpg" alt="" class="in">
+        <img src="images/04.jpg" alt="" class="in">
+        <img src="images/05.jpg" alt="" class="in">
+        <img src="images/06.jpeg" alt="" class="in">
+        <img src="images/07.jpg" alt="" class="in">
+    </div>
+</div>
+
+
+
+<script>
+    var oLoop = document.getElementById('loop'),//获取循环按钮
+        oSingle = document.getElementById('single'),//获取单边按钮
+        oLast = document.getElementById('last'),//获取上一张按钮
+        oNext = document.getElementById('next'),//获取下一张按钮
+        oImg = document.getElementsByTagName('img'),//获取图片元素
+        oText_top = document.getElementById('top'),//获取上面p
+        oText_bottom = document.getElementById('bottom'),//获取下面的p
+        n = 1 ,
+        bool = false;
+
+    //点击 循环  单边 使它变色
+    oLoop.onclick = function () {
+        this.className = 'active';
+        oSingle.className = '';
+        bool = true;
+
+    };
+    oSingle.onclick = function () {
+        this.className = 'active';
+        oLoop.className = '';
+        bool = false;
+    };
+
+    //点击 下一张 按钮  进行图片切换
+    oNext.onclick = function () {
+
+            n++;
+
+            switch (n) {
+                case 2:
+                    oImg[0].className = 'in';
+                    oImg[1].className = 'out';
+                    oText_top.innerText = '2/7';
+                    oText_bottom.innerText = '这是第二张图片';
+                    break;
+                case 3:
+                    oImg[1].className = 'in';
+                    oImg[2].className = 'out';
+                    oText_top.innerText = '3/7';
+                    oText_bottom.innerText = '这是第三张图片';
+                    break;
+                case 4:
+                    oImg[2].className = 'in';
+                    oImg[3].className = 'out';
+                    oText_top.innerText = '4/7';
+                    oText_bottom.innerText = '这是第四张图片';
+                    break;
+                case 5:
+                    oImg[3].className = 'in';
+                    oImg[4].className = 'out';
+                    oText_top.innerText = '5/7';
+                    oText_bottom.innerText = '这是第五张图片';
+                    break;
+                case 6:
+                    oImg[4].className = 'in';
+                    oImg[5].className = 'out';
+                    oText_top.innerText = '6/7';
+                    oText_bottom.innerText = '这是第六张图片';
+                    break;
+                case 7:
+                    oImg[5].className = 'in';
+                    oImg[6].className = 'out';
+                    oText_top.innerText = '7/7';
+                    oText_bottom.innerText = '这是第七张图片';
+                    break;
+                default:
+                    if(bool){
+                        n -=7;
+                        console.log(n);
+                        oImg[6].className = 'in';
+                        oImg[0].className = 'out';
+                        oText_top.innerText = '1/7';
+                        oText_bottom.innerText = '这是第一张图片';
+                    }else{
+                        alert('你眼瞎啊，没图了！！');
+                        n -= 1;
+                    }
+            }
+    };
+        //点击上一张按钮  切换图片
+        oLast.onclick = function () {
+                n--;
+
+                switch (n) {
+                    case 1:
+                        oImg[0].className = 'out';
+                        oImg[1].className = 'in';
+                        oText_top.innerText = '1/7';
+                        oText_bottom.innerText = '这是第一张图片';
+                        break;
+                    case 2:
+                        oImg[1].className = 'out';
+                        oImg[2].className = 'in';
+                        oText_top.innerText = '2/7';
+                        oText_bottom.innerText = '这是第二张图片';
+                        break;
+                    case 3:
+                        oImg[2].className = 'out';
+                        oImg[3].className = 'in';
+                        oText_top.innerText = '3/7';
+                        oText_bottom.innerText = '这是第三张图片';
+                        break;
+                    case 4:
+                        oImg[3].className = 'out';
+                        oImg[4].className = 'in';
+                        oText_top.innerText = '4/7';
+                        oText_bottom.innerText = '这是第四张图片';
+                        break;
+                    case 5:
+                        oImg[4].className = 'out';
+                        oImg[5].className = 'in';
+                        oText_top.innerText = '5/7';
+                        oText_bottom.innerText = '这是第五张图片';
+                        break;
+                    case 6:
+                        oImg[5].className = 'out';
+                        oImg[6].className = 'in';
+                        oText_top.innerText = '6/7';
+                        oText_bottom.innerText = '这是第六张图片';
+                        break;
+                    default:
+                        if (bool) {
+                            n += 7;
+                            console.log(n);
+                            oImg[6].className = 'out';
+                            oImg[0].className = 'in';
+                            oText_top.innerText = '7/7';
+                            oText_bottom.innerText = '这是第七张图片';
+                        } else {
+                            alert('你眼瞎啊，没图了！！');
+                            n += 1;
+                        }
+                }
+    };
+</script>
+</body>
+</html>
