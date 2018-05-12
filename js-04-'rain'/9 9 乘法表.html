@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乘法表格多样式</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline
+        }
+        span{
+            display: inline-block;
+            width:70px;
+            height:40px;
+            margin-top:5px;
+            margin-right: 10px;
+            line-height:40px;
+            text-align:center;
+            border:1px solid blue;
+        }
+        div{
+            padding-top:10px;
+            padding-bottom: 10px;
+            border-bottom:3px solid #000000;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+<div id="box4"></div>
+
+<script>
+    for ( var i=1; i<=9 ;i++){
+
+        for( var j= 1; j<=i ;j++){
+            box1.innerHTML += "<span>" + i +'*' + j + '='+ i*j + "</span>";
+        }
+        box1.innerHTML +='<br>';
+    }
+
+    for( var i=1; i<=9 ; i++){
+
+        for(var j=1; j<=10-i;j++){
+            box2.innerHTML += "<span>" + i +'*' + j + '='+ i*j + "</span>";
+        }
+        box2.innerHTML +='<br>';
+    }
+
+    for( var i=9; i>=1 ; i--){
+
+        for(var j=1; j<=i;j++){
+            box3.innerHTML += "<span>" + i +'*' + j + '='+ i*j + "</span>";
+        }
+        box3.innerHTML +='<br>';
+    }
+
+    for( var i=9; i>=1 ; i--){
+
+        for(var j=i; j<=9;j++){
+            box4.innerHTML += "<span>" + i +'*' + j + '='+ i*j + "</span>";
+        }
+        box4.innerHTML +='<br>';
+    }
+
+
+</script>
+</body>
+</html>
