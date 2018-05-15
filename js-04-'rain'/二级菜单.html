@@ -8,75 +8,96 @@
             margin: 0;
             padding: 0;
             border: 0;
+            list-style-type: none;
             vertical-align: baseline
         }
         #wrap{
-            width:200px;
+            width: 200px;
             margin: 50px auto;
         }
-        ul{
-            width:198px;
-            height:42px;
+        li{
+            height: 40px;
+            text-align:center;
             overflow: hidden;
+            border: 1px solid #000;
         }
-        ul li{
-            list-style: none;
+        h3{
             height:40px;
-            text-align: center;
-            line-height:39px;
-            color:#000;
-            border:1px solid #000;
-        }
-        li:nth-child(1){
-            background-color: skyblue;
+            background: skyblue;
+            line-height:40px;
             cursor: pointer;
         }
-        ul li + li:hover{
-            background-color: skyblue;
+        p{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #000;
         }
+
     </style>
 </head>
 <body>
 
 <div id="wrap">
-    <ul id="list1">
-        <li>我</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-    </ul>
-    <ul id="list2">
-        <li>爱好</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-    </ul>
-    <ul id="list3">
-        <li>其他</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
+    <ul>
+        <li>
+            <h3>爱好</h3>
+            <p>读书</p>
+            <p>游戏</p>
+            <p>打球</p>
+        </li>
+        <li>
+            <h3>水果</h3>
+            <p>苹果</p>
+            <p>橘子</p>
+            <p>西瓜</p>
+        </li>
+        <li>
+            <h3>吃的</h3>
+            <p>蛋糕</p>
+            <p>大饼</p>
+            <p>茄子</p>
+        </li>
     </ul>
 </div>
 
 
 
 <script>
-    list1.onclick = function () {
-            list1.style.height = '168px';
-            list2.style.height = '42px';
-            list3.style.height = '42px';
-    };
-    list2.onclick = function () {
-        list2.style.height = '168px';
-        list1.style.height = '42px';
-        list3.style.height = '42px';
-    };
-    list3.onclick = function () {
-        this.style.height = '168px';
-        list1.style.height = '42px';
-        list2.style.height = '42px';
-    }
+        var oLi = document.getElementsByTagName('li'),
+            oP = document.getElementsByTagName('p');
+
+        
+        
+        //点击  显示菜单  关闭其他菜单
+        for(var i = 0 ;i<oLi.length; i++){
+
+            oLi[i].onoff = true;
+
+            oLi[i].onclick = function(){
+
+                if(this.onoff) {
+                    for (var j = 0; j < oLi.length; j++) {
+                        oLi[j].style.height = '40px';
+                        oLi[j].onoff = true;
+                    }
+                    this.style.height = 'auto';
+                    this.onoff = !this.onoff;
+                }else{
+                    this.style.height = '40px';
+                    this.onoff = !this.onoff;
+                }
+            }
+
+            //  鼠标  hover效果
+            for(var k = 0; k<oP.length;k++){
+                oP[k].onmouseenter = function () {
+                    this.style.backgroundColor = 'red';
+                }
+                oP[k].onmouseleave = function () {
+                    this.style.backgroundColor = '';
+                }
+            }
+        }
 
 </script>
 </body>
