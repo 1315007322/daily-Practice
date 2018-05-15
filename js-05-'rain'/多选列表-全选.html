@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多选列表</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline
+        }
+        #wrap{
+            width:400px;
+            height:420px;
+            margin:50px auto;
+            border: 1px solid #000;
+        }
+        h1{
+            text-align: center;
+        }
+        p{
+            height:60px;
+            line-height:60px;
+            text-indent: 4em;
+            background: url("images/ck.png") no-repeat 20px 20px;
+        }
+        p.all{
+            height:60px;
+            line-height:60px;
+            text-indent: 4em;
+            background: url("images/cked.jpg") no-repeat 20px 20px;
+        }
+        ul{
+            list-style-type: none;
+        }
+        li{
+            height:60px;
+            line-height:60px;
+            text-indent: 7em;
+            cursor: pointer;
+            background: url("images/ck.png") no-repeat 20px 20px;
+        }
+        li.cked{
+            height:60px;
+            line-height:60px;
+            text-indent: 4em;
+            cursor: pointer;
+            background: url("images/cked.jpg") no-repeat 20px 20px;
+        }
+    </style>
+<body>
+<h1>请选择你的爱好</h1>
+<div id="wrap">
+    <ul>
+        <li>打篮球</li>
+        <li>玩游戏</li>
+        <li>看书</li>
+        <li>看电影</li>
+        <li>听音乐</li>
+        <li>踢足球</li>
+    </ul>
+    <p>全选</p>
+</div>
+
+
+<script>
+    var oLi = document.getElementsByTagName('li');
+    var oP = document.getElementsByTagName('p')[0];
+    var oColor = ['skyblue','#999'];
+
+    for (var i =0; i<oLi.length;i++) {
+        oLi[i].onoff = true;
+        oP.bool = true;
+        var count = 0;
+        oLi[i].int = i;
+       oLi[i].style.backgroundColor = oColor[i%2];
+
+       oLi[i].onmouseenter = function () {
+           this.style.backgroundColor = 'orange';
+       }
+        oLi[i].onmouseleave = function () {
+            this.style.backgroundColor = oColor[this.int%2];
+        }
+
+        oLi[i].onclick = function () {
+            if (this.onoff) {
+                this.className = 'cked';
+                count++;
+                this.onoff = !this.onoff;
+            } else {
+                this.className = 'ck';
+                count--;
+                this.onoff = !this.onoff;
+            }
+            console.log(count);
+            if (count == 6) {
+                oP.className = 'all';
+                oP.bool = !oP.bool;
+            } else {
+                oP.className = '';
+                oP.bool = true;
+            }
+        };
+
+        oP.onclick = function () {
+            if(oP.bool){
+                for (var k = 0;k<oLi.length;k++){
+                    oLi[k].className = 'cked';
+                    oLi[k].onoff = false;
+                }
+                count = 6;
+                this.className = 'all';
+                this.bool = !this.bool;
+            }else{
+                for (var k = 0;k<oLi.length;k++){
+                    oLi[k].className = '';
+                    oLi[k].onoff = !oLi.onoff;
+                }
+                count = 0;
+                this.className = '';
+                this.bool = !this.bool;
+            }
+
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>
