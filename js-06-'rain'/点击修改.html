@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline
+        }
+        ul{
+            list-style-type: none;
+        }
+        li{
+            height: 30px;
+            padding:10px;
+            line-height: 30px;
+            border-bottom: 1px solid red;
+        }
+        ul li p,ul li input,ul li div{
+            float: left;
+            margin: auto;
+        }
+        .btn{
+            width: 70px;
+            height: 30px;
+            text-align: center;
+            color: #fff;
+            background-color: black;
+            cursor: pointer;
+        }
+        input{
+            display: none;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+    <ul>
+        <li>
+            <p class="text">我是修改的文字</p>
+            <input type="text">
+            <div class="btn">点击修改</div>
+        </li>
+        <li>
+            <p class="text">我是修改的文字</p>
+            <input type="text">
+            <div class="btn">点击修改</div>
+        </li>
+        <li>
+            <p class="text">我是修改的文字</p>
+            <input type="text">
+            <div class="btn">点击修改</div>
+        </li>
+        <li>
+            <p class="text">我是修改的文字</p>
+            <input type="text">
+            <div class="btn">点击修改</div>
+        </li>
+    </ul>
+</div>
+
+
+<script>
+    var oWrap = document.getElementById('wrap'),
+        oBtn = oWrap.getElementsByClassName('btn'),
+        oText = document.getElementsByTagName('input'),
+        oP = oWrap.getElementsByTagName('p'),
+        length = oBtn.length;
+
+    for ( var i= 0;i<length;i++){
+
+        oBtn[i].index = i;
+        oBtn[i].bool = true;
+        oBtn[i].onclick = function () {
+            index = this.index;
+
+            var text = oP[index].innerText;
+            var texted = oText[index].value;
+
+            if (this.bool) {
+                this.bool = false;
+
+                this.innerText = '确认';
+                oText[index].style.display = 'block';
+                oP[index].style.display = 'none';
+                oText[index].value = text;
+                console.log(this.bool);
+            }else{
+                this.bool = true;
+                this.innerText = '点击修改';
+                oText[index].style.display = 'none';
+                oP[index].style.display = 'block';
+                oP[index].innerText = texted;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
