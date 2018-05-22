@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="xingxing/iconfont.css">
+    <title>Title</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline
+        }
+        #wrap{
+            width: 500px;
+            height: 150px;
+            margin: 50px auto ;
+        }
+        .header{
+            float: left;
+            width: 150px;
+            color: red;
+        }
+        ul{
+            list-style-type: none;
+            margin-right: 10px;
+        }
+        li{
+            float: left;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+        #wrap p{
+            float: left;
+            width: 150px;
+            height: 50px;
+            padding: 5px;
+            border: 1px solid ;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+    <div class="header">请对本篇文章评价：</div>
+    <ul>
+        <li>
+            <i class="iconfont icon-xingxing"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-xingxing"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-xingxing"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-xingxing"></i>
+        </li>
+        <li>
+            <i class="iconfont icon-xingxing"></i>
+        </li>
+    </ul>
+    <p id="text">请认真对本篇文章评价！！</p>
+</div>
+
+
+<script>
+        var oLi = document.getElementsByTagName('li'),
+            length = oLi.length,
+            oPic = document.getElementsByTagName('i'),
+            oUl = document.getElementsByTagName('ul')[0],
+            oP = document.getElementById('text');
+        var arr = [
+            "请认真对本篇文章评价！！",
+            "差",
+            "较差",
+            "还行",
+            "中等",
+            "很棒"
+        ];
+
+        var score = -1;//没有任何星星被点亮
+        //鼠标移入星星 框 发生变化
+        for( var i = 0;i<length;i++){
+
+            oLi[i].index = i;
+
+
+            oLi[i].onmouseenter = function () {
+
+                var index = this.index;
+
+                star(index);
+
+            };
+
+            oLi[i].onclick = function () {
+                score = this.index;
+            }
+
+
+
+            oUl.onmouseleave = function () {
+
+                star(score);
+
+                //oP.innerText = arr[0];
+            }
+
+           /* oLi[i].onclick = function () {
+                for(var i = 0;i<=index;i++){
+                    oLi[i].bool = true;
+                }
+                if(this.bool){
+                    oLi[index].style.color = 'orange';
+                }
+            }*/
+
+
+        }
+
+
+
+        function star(index) { //点亮星星
+            for(var i = 0; i<=index;i++){ // 鼠标移入 li  将左侧点亮
+                oLi[i].style.color = 'orange';
+
+            }
+            for( var i = index+1;i<length;i++){
+                oLi[i].style.color = '';
+            }
+            oP.innerText = arr[ index + 1];
+        }
+
+</script>
+</body>
+</html>
